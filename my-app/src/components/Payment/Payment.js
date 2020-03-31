@@ -15,6 +15,16 @@ const Payment = () => {
   axios
   .post("http://localhost:8000/payment", body)
   .then(response => {
+
+    // axios
+    //   .post(`http://localhost:8080/subscriptions/subscribe`, {
+    //     trainer_id: id,
+    //     student_id: props.studentData.id,
+    //     student_name: props.studentData.name
+    //   })
+    //   .then(res => {
+    //     alert("Thank you for your Subscription ");
+    //   });
     console.log(response);
     alert("Payment Success");
   })
@@ -26,10 +36,10 @@ const Payment = () => {
 
 return (
   <StripeCheckout
-    label="Go Premium" //Component button text
-    name="Business LLC" //Modal Header
+    label="Subscribe" //Component button text
+    name="Custom Fitness" //Modal Header
     description="Upgrade to a premium account today."
-    panelLabel="Go Premium" //Submit button in modal
+    panelLabel="Subscribe to trainer" //Submit button in modal
     amount={999} //Amount in cents $9.99
     token={onToken}
     stripeKey={publishableKey}

@@ -194,7 +194,7 @@ export default function StudentsItem(props) {
                       allTrainers={props.allTrainers}
                       trainerId={card.id}
                     />
-                    <Button >
+                    <Button onClick={evt => handleSubscribe(evt, card.id)}>
                     <Payment studentData={props.studentData} />
                     
                     </Button>{" "}
