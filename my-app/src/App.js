@@ -60,6 +60,8 @@ function App() {
           <Student studentData={student} />
           <Redirect to="/student/dashboard" />
         </Route>
+
+        
       </Switch>
     </Router>
   );

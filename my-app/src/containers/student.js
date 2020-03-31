@@ -44,6 +44,8 @@ export default function Student(props) {
             <StudentDashboard studentData={props.studentData} />
           </Route>
 
+          
+
           <Route path="/student/trainers">
             <Trainers
               allTrainers={allTrainers}

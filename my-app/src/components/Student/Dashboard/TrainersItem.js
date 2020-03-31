@@ -17,7 +17,15 @@ import axios from "axios";
 
 import { useTheme } from "@material-ui/core/styles";
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+
 import TrainerView from "./TrainerView";
+import Payment from "../../Payment/Payment";
 
 function Copyright() {
   return (
@@ -70,38 +78,37 @@ const useStyles = makeStyles(theme => ({
 
 export default function StudentsItem(props) {
   console.log("props in trainers item", props);
-  const[trainers, setTrainers]=useState(props.allTrainers)
+  const [trainers, setTrainers] = useState(props.allTrainers);
   const classes = useStyles();
   // const [state,setState]=useState()
 
   const handleButton = evt => {
     evt.preventDefault();
-    
+
     const getTrainersArr = props.allTrainers.filter(
       item => item.expertise === props.studentData.focus
     );
-    
-    setTrainers(getTrainersArr)
-   
+
+    setTrainers(getTrainersArr);
   };
 
   const handleBack = evt => {
     evt.preventDefault();
     setTrainers(props.allTrainers);
-  }
+  };
 
   const handleSubscribe = (evt, id) => {
     evt.preventDefault();
 
-    axios
-      .post(`http://localhost:8080/subscriptions/subscribe`, {
-        trainer_id: id,
-        student_id: props.studentData.id,
-        student_name: props.studentData.name
-      })
-      .then(res => {
-        alert("Thank you for your Subscription ");
-      });
+    // axios
+    //   .post(`http://localhost:8080/subscriptions/subscribe`, {
+    //     trainer_id: id,
+    //     student_id: props.studentData.id,
+    //     student_name: props.studentData.name
+    //   })
+    //   .then(res => {
+    //     alert("Thank you for your Subscription ");
+    //   });
   };
 
   const theme = useTheme();
@@ -148,7 +155,11 @@ export default function StudentsItem(props) {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button onClick= {handleBack} variant="outlined" color="primary">
+                  <Button
+                    onClick={handleBack}
+                    variant="outlined"
+                    color="primary"
+                  >
                     Random Fit
                   </Button>
                 </Grid>
@@ -183,13 +194,20 @@ export default function StudentsItem(props) {
                       allTrainers={props.allTrainers}
                       trainerId={card.id}
                     />
-                    <Button
+                    <Button >
+                    <Payment studentData={props.studentData} />
+                    
+                    </Button>{" "}
+                    {/* <Button
                       onClick={evt => handleSubscribe(evt, card.id)}
                       size="small"
                       color="primary"
-                    >
+                    ><Route path="students/trainers/payment">
+                    <Payment studentData={props.studentData} />
+                    <Redirect to="students/trainers/payment" />
+            </Route>
                       Subscribe
-                    </Button>
+                    </Button> */}
                   </CardActions>
                 </Card>
               </Grid>
